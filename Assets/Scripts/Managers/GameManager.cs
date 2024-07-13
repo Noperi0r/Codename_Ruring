@@ -32,7 +32,7 @@ public class GameManager : MonoSingleton<GameManager>
     
     public static Dictionary<LevelMode, List<MusicData>> MusicPattern { get; private set; }= new Dictionary<LevelMode, List<MusicData>>();
 
-    string _mainSceneName = "Scene_Shooting";
+    string _mainSceneName = "MainGame";
 
     int _totalScore;
     int _successScore;

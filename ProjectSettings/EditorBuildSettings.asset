@@ -5,12 +5,24 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EnemyTest.unity
     guid: cf7767614f1baed41adeba4578b7f713
+  - enabled: 1
+    path: Assets/Scenes/Game/IntroScene.unity
+    guid: c6058d5b6387da544a9297dd2c1f6885
+  - enabled: 1
+    path: Assets/Scenes/Game/StartScene.unity
+    guid: 04eaa77faa8bd1e42aac5bded6f85c5c
+  - enabled: 1
+    path: Assets/Scenes/Game/LobbyScene.unity
+    guid: 45c6d70bd8e56724f9d0c7b13e39e2ba
+  - enabled: 1
+    path: Assets/Scenes/Game/MainGame.unity
+    guid: b077c3b046bb46344a8ab66aa293eb7e
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: eec5b462ac27ca7448aaa23ec3f44b11
   - enabled: 1
     path: Assets/Scenes/Scene_Shooting.unity
     guid: 599b7d8a9f9a3cf4a8652aa66037f08f
