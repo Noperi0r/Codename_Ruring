@@ -139,6 +139,10 @@ public class Enemy : MonoBehaviour
         {
             OnDecided?.Invoke(EHitState.Success);
             fan.GetComponent<Animator>().SetTrigger("hitSuccess");
+
+            ObjectPoolManager objPool = FindObjectOfType<ObjectPoolManager>();
+            GameObject hitEffect = objPool.GetHitEffect();
+            hitEffect.transform.position = transform.position;
         }
         else
         {
@@ -147,9 +151,6 @@ public class Enemy : MonoBehaviour
         }
 
         StartCoroutine("OnHit");
-        ObjectPoolManager objPool = FindObjectOfType<ObjectPoolManager>();
-        GameObject hitEffect = objPool.GetHitEffect();
-        hitEffect.transform.position = transform.position;
     }
 
     void DebugDecision()
@@ -183,9 +184,12 @@ public class Enemy : MonoBehaviour
 
         float curCircleScale = _decisionCircle.transform.localScale.x;
 
-        float duration = 0.15f;
+        float duration = .3f;
 
         _isHit = true;
+
+        StopCoroutine("ShrinkCircle");
+
         while (elapsedTime <= duration)
         {
             elapsedTime += Time.deltaTime;
@@ -195,12 +199,15 @@ public class Enemy : MonoBehaviour
             renderer.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
             renderer2.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
             renderer3.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
-
-/*            float t = elapsedTime / duration;
+/*
+            float t = elapsedTime / duration;
             float easedT = EaseOutExp(t);
             float curScale = Mathf.Lerp(curCircleScale, _decCircleFirstScale, easedT);
 
             _decisionCircle.transform.localScale = new Vector3(curScale, curScale, curScale);*/
+            _decisionCircle.transform.localScale = new Vector3(_decisionCircle.transform.localScale.x + 0.02f, 
+                                                           _decisionCircle.transform.localScale.y + 0.02f, _decisionCircle.transform.localScale.z + 0.02f);
+
 
             yield return null;
         }
