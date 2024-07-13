@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngineInternal;
 
 public class Enemy : MonoBehaviour
 {
@@ -23,8 +24,6 @@ public class Enemy : MonoBehaviour
 
     GameObject _decisionCircle;
     GameObject _fan;
-
-
 
     public GameObject fan
     {
@@ -125,7 +124,6 @@ public class Enemy : MonoBehaviour
         renderer3.color = new Color(renderer3.color.r, renderer3.color.g, renderer3.color.b, 1);
 
         _tweens.Kill();
-        Debug.Log("DISABLE");
     }
 
     public void Hit()
@@ -143,8 +141,9 @@ public class Enemy : MonoBehaviour
         }
 
         StartCoroutine("OnHit");
-        // test
-        //transform.gameObject.SetActive(false);
+        ObjectPoolManager objPool = FindObjectOfType<ObjectPoolManager>();
+        GameObject hitEffect = objPool.GetHitEffect();
+        hitEffect.transform.position = transform.position;
     }
 
     void DebugDecision()
@@ -175,8 +174,10 @@ public class Enemy : MonoBehaviour
         SpriteRenderer renderer3 = _fan.GetComponent<SpriteRenderer>();  
 
         Color initialColor = renderer.color;
-        
-        float duration = 0.3f;
+
+        float curCircleScale = _decisionCircle.transform.localScale.x;
+
+        float duration = 0.15f;
         while (elapsedTime <= duration)
         {
             elapsedTime += Time.deltaTime;
@@ -186,13 +187,18 @@ public class Enemy : MonoBehaviour
             renderer.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
             renderer2.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
             renderer3.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
+            /*
+                        float t = elapsedTime / duration;
+                        float easedT = EaseOutExpo(t);
+                        float curScale = Mathf.Lerp(curCircleScale, _decCircleFirstScale, easedT);
 
+                        _decisionCircle.transform.localScale = new Vector3(curScale, curScale, curScale);*/
 
-
+            float scale = _decisionCircle.transform.localScale.x;
+            _decisionCircle.transform.localScale = new Vector3(scale * 4f, scale * 4f, scale * 4f);
 
             yield return null;
         }
     }
-
 }
 

@@ -9,14 +9,16 @@ public class ObjectPoolManager : MonoBehaviour
     [SerializeField] GameObject _enemyManPrefab; 
     [SerializeField] GameObject _enemyGirlPrefab; // 인스펙터창에서 지정 필요
     [SerializeField] GameObject _spawnerParent;
-    [SerializeField] GameObject _hitEffect;
+    [SerializeField] GameObject _hitEffectPrefab;
 
     const int POOLSIZE = 256;
-    
+    const int EFFECTSIZE = 28;
+
     GameObject[] _enemyObjs;
     public Enemy[] _enemies;
 
     GameObject[] _spawners;
+    GameObject[] _hitEffect;
 
     void Awake()
     {
@@ -26,6 +28,8 @@ public class ObjectPoolManager : MonoBehaviour
 
         for (int i = 0; i < _spawners.Length; ++i)
             _spawners[i] = _spawnerParent.transform.GetChild(i).gameObject;
+
+        _hitEffect = new GameObject[EFFECTSIZE];
 
         Generate();
     }
@@ -44,6 +48,12 @@ public class ObjectPoolManager : MonoBehaviour
             _enemies[i] = _enemyObjs[i].GetComponent<Enemy>();
 
             _enemyObjs[i].SetActive(false);
+        }
+
+        for(int i=0; i<_hitEffect.Length; ++i)
+        {
+            _hitEffect[i] = Instantiate(_hitEffectPrefab);
+            _hitEffect[i].SetActive(false);
         }
     }
 
@@ -75,6 +85,19 @@ public class ObjectPoolManager : MonoBehaviour
     public GameObject GetSpawner(int i)
     {
         return _spawners[i];
+    }
+
+    public GameObject GetHitEffect()
+    {
+        for (int i = 0; i < _hitEffect.Length; i++)
+        {
+            if (!_hitEffect[i].activeSelf)
+            {
+                _hitEffect[i].SetActive(true);
+                return _hitEffect[i];
+            }
+        }
+        return null;
     }
 
 }

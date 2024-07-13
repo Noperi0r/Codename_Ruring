@@ -155,7 +155,7 @@ MonoBehaviour:
   _enemyManPrefab: {fileID: 1237177783605683792, guid: abe5099564e591d43bcf5ad75aa101da, type: 3}
   _enemyGirlPrefab: {fileID: 1237177783605683792, guid: 2639d63591b41e04784a8a4f3f9fd915, type: 3}
   _spawnerParent: {fileID: 1649658736}
-  _hitEffect: {fileID: 0}
+  _hitEffectPrefab: {fileID: 4588642040016347014, guid: aced4fbecb4e5664e8a7dfde66620755, type: 3}
   _enemies: []
 --- !u!4 &539460648
 Transform:
