@@ -11,6 +11,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     string _effectPath = "Sound/Effect/";
     string _prefabPath = "Prefab/Speaker/SoundManager";
+
+    private float _effectVolume = 0.6f;
     
 
     void Awake()
@@ -22,12 +24,31 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             _speakers[i] = Instantiate(Resources.Load<GameObject>(_prefabPath), transform);
             _speakers[i].GetComponent<AudioSource>().clip = _soundEffects[i];
+                        
+            AudioSource source = _speakers[i].GetComponent<AudioSource>();
+            source.volume = _effectVolume; 
+            GameManager.EffectVolume += (volume) =>
+            {
+                SetVolumn(source, volume);
+            };
         }
+    }
+
+    public void SetVolumn(AudioSource source, float volume)
+    {
+        source.volume = volume;
     }
 
     public void PlaySound(ESoundType sound)
     {
         _speakers[(int)sound].GetComponent<AudioSource>().Play();
+    }
+    
+    public void PlaySound(ESoundType sound, float volumn)
+    {
+        AudioSource source = _speakers[(int)sound].GetComponent<AudioSource>();
+        source.volume = volumn;
+        source.Play();
     }
 
     public void StopSound(ESoundType sound)

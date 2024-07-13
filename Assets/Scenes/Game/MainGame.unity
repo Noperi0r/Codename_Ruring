@@ -738,6 +738,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1774591560326940971, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947900358470881870, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: bestScoreText
+      value: 
+      objectReference: {fileID: 4086469229706294392}
+    - target: {fileID: 4947900358470881870, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: currentScoreText
+      value: 
+      objectReference: {fileID: 4086469229706294393}
     - target: {fileID: 6577834596513101860, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -822,11 +834,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_MainGame
       objectReference: {fileID: 0}
+    - target: {fileID: 7677959771425348925, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+--- !u!114 &4086469229706294392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5038043229492615221, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+  m_PrefabInstance: {fileID: 4086469229706294391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4086469229706294393 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3214041192467875385, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+  m_PrefabInstance: {fileID: 4086469229706294391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4130337749585143282
 RectTransform:
   m_ObjectHideFlags: 0

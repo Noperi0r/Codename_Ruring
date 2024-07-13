@@ -27,6 +27,9 @@ public class GameManager : MonoSingleton<GameManager>
     public static Action Fail = null;
     public static Action GameClear = null;
     public static Action GameOver = null;
+
+    public static Action<float> BgmVolume = null;
+    public static Action<float> EffectVolume = null;
     
     public static Dictionary<LevelMode, List<MusicData>> MusicPattern { get; private set; }= new Dictionary<LevelMode, List<MusicData>>();
 
