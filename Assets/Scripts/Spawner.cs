@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
+using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class Spawner : MonoBehaviour
 
     Vector3 _targetPos;
 
+
     void Start()
     {
         if (!_poolManager)
@@ -33,7 +35,7 @@ public class Spawner : MonoBehaviour
         // TEST
         //ReleaseEnemy(5.0f, 2.0f, 8);
     }
-    
+
     public void ReleaseEnemy(float moveSpeed, float decisionTime, int spawnPoint)
     {
         if (_spawnerPathMode == EPathMode.None) return;
@@ -42,6 +44,9 @@ public class Spawner : MonoBehaviour
         Enemy enemy = enemyObj.GetComponent<Enemy>();
 
         enemyObj.transform.position = transform.position;
+
+        enemy.tweens = DOTween.Sequence();
+
         switch (_spawnerPathMode)
         {
             case EPathMode.Linear_Right:
@@ -57,15 +62,14 @@ public class Spawner : MonoBehaviour
                 break;
 
             case EPathMode.Curve_Down:
-                enemy.transform.DOMoveX(_targetPos.x, enemy.moveSpeed).SetEase(Ease.InQuad);
-                enemy.transform.DOMoveY(_targetPos.y, enemy.moveSpeed).SetEase(Ease.OutQuad);
+                enemy.tweens.Append(enemy.transform.DOMoveX(_targetPos.x, enemy.moveSpeed).SetEase(Ease.InQuad));
+                enemy.tweens.Join(enemy.transform.DOMoveY(_targetPos.y, enemy.moveSpeed).SetEase(Ease.OutQuad));
                 break;
 
             case EPathMode.Curve_Up:
-                enemy.transform.DOMoveX(_targetPos.x, enemy.moveSpeed).SetEase(Ease.OutQuad);
-                enemy.transform.DOMoveY(_targetPos.y, enemy.moveSpeed).SetEase(Ease.InQuad);
+                enemy.tweens.Append(enemy.transform.DOMoveX(_targetPos.x, enemy.moveSpeed).SetEase(Ease.OutQuad));
+                enemy.tweens.Join(enemy.transform.DOMoveY(_targetPos.y, enemy.moveSpeed).SetEase(Ease.InQuad));
                 break;
-
         }
         SpriteRenderer fanSprite = enemy.fan.GetComponent<SpriteRenderer>();
         fanSprite.flipX = (spawnPoint >= 0 && spawnPoint <= 6) ? true : false;

@@ -39,7 +39,7 @@ namespace Game
         {
             if (musicIndex >= _musicPattern.Count) return;
 
-            Debug.Log($"{_musicPattern[musicIndex].time}, {timer.currentTime}");
+            //Debug.Log($"{_musicPattern[musicIndex].time}, {timer.currentTime}");
 
             if (_musicPattern[musicIndex].time - _decisionTime <= timer.currentTime)
             {

@@ -272,6 +272,7 @@ MonoBehaviour:
   _poolManager: {fileID: 0}
   _patternReader: {fileID: 0}
   _levelMode: 0
+  _playerMaxLife: 3
 --- !u!4 &1256367488
 Transform:
   m_ObjectHideFlags: 0
@@ -559,6 +560,10 @@ PrefabInstance:
       propertyPath: _poolManager
       value: 
       objectReference: {fileID: 539460647}
+    - target: {fileID: 77110687887988604, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
+      propertyPath: _spawnerPathMode
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1049595958369800777, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
       propertyPath: _poolManager
       value: 
@@ -567,6 +572,10 @@ PrefabInstance:
       propertyPath: _poolManager
       value: 
       objectReference: {fileID: 539460647}
+    - target: {fileID: 2178829497156528964, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
+      propertyPath: _spawnerPathMode
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2784514928814550552, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
       propertyPath: _poolManager
       value: 
@@ -579,6 +588,10 @@ PrefabInstance:
       propertyPath: _poolManager
       value: 
       objectReference: {fileID: 539460647}
+    - target: {fileID: 3506949967642228133, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
+      propertyPath: _spawnerPathMode
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4425957431149618757, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
       propertyPath: _poolManager
       value: 
@@ -587,10 +600,18 @@ PrefabInstance:
       propertyPath: _poolManager
       value: 
       objectReference: {fileID: 539460647}
+    - target: {fileID: 4759804658854433126, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
+      propertyPath: _spawnerPathMode
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4815399419760314543, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
       propertyPath: _poolManager
       value: 
       objectReference: {fileID: 539460647}
+    - target: {fileID: 4815399419760314543, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
+      propertyPath: _spawnerPathMode
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4866601895805705624, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
       propertyPath: _poolManager
       value: 
@@ -599,14 +620,26 @@ PrefabInstance:
       propertyPath: _poolManager
       value: 
       objectReference: {fileID: 539460647}
+    - target: {fileID: 4988940658937573947, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
+      propertyPath: _spawnerPathMode
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5389667502099050613, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
       propertyPath: _poolManager
       value: 
       objectReference: {fileID: 539460647}
+    - target: {fileID: 5389667502099050613, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
+      propertyPath: _spawnerPathMode
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5863706609634624072, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
       propertyPath: _poolManager
       value: 
       objectReference: {fileID: 539460647}
+    - target: {fileID: 5863706609634624072, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
+      propertyPath: _spawnerPathMode
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7242571889739847082, guid: 7e2b7e21bd60e2047bb21363e4909be5, type: 3}
       propertyPath: _poolManager
       value: 

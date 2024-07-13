@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ public class Enemy : MonoBehaviour
     GameObject _decisionCircle;
     GameObject _fan;
 
+
+
     public GameObject fan
     {
         get { return _fan; }
@@ -44,7 +47,14 @@ public class Enemy : MonoBehaviour
     }
 
     public Rigidbody2D EnemyRb => _enemyRb;
-    
+
+    DG.Tweening.Sequence _tweens;
+    public DG.Tweening.Sequence tweens
+    {
+        get { return _tweens; }
+        set { _tweens = value; }
+    }
+
     void Awake()
     {
         _decisionCircle = transform.GetChild(0).gameObject;
@@ -53,6 +63,8 @@ public class Enemy : MonoBehaviour
         _enemyRb = GetComponent<Rigidbody2D>();
 
         _fan = transform.transform.GetChild(1).gameObject;
+
+        _tweens = DOTween.Sequence();
     }
     void OnEnable()
     {
@@ -111,6 +123,9 @@ public class Enemy : MonoBehaviour
         renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 1);
         renderer2.color = new Color(renderer2.color.r, renderer2.color.g, renderer2.color.b, 1);
         renderer3.color = new Color(renderer3.color.r, renderer3.color.g, renderer3.color.b, 1);
+
+        _tweens.Kill();
+        Debug.Log("DISABLE");
     }
 
     public void Hit()
