@@ -87,9 +87,8 @@ public class GameManager : MonoSingleton<GameManager>
         {
             Cursor.visible = true;
             _poolManager = null;
-            
         }
-        
+
         if(scene.name == "Lobby")
         {
             _patternReader = FindObjectOfType<PatternReader>(); 

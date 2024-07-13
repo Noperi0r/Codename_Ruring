@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngineInternal;
 
 public class Enemy : MonoBehaviour
 {
@@ -37,6 +39,8 @@ public class Enemy : MonoBehaviour
     float _moveSpeed;
     Rigidbody2D _enemyRb;
 
+    bool _isHit;
+
     public float moveSpeed
     {
         get { return _moveSpeed; }
@@ -44,7 +48,14 @@ public class Enemy : MonoBehaviour
     }
 
     public Rigidbody2D EnemyRb => _enemyRb;
-    
+
+    DG.Tweening.Sequence _tweens;
+    public DG.Tweening.Sequence tweens
+    {
+        get { return _tweens; }
+        set { _tweens = value; }
+    }
+
     void Awake()
     {
         _decisionCircle = transform.GetChild(0).gameObject;
@@ -53,6 +64,8 @@ public class Enemy : MonoBehaviour
         _enemyRb = GetComponent<Rigidbody2D>();
 
         _fan = transform.transform.GetChild(1).gameObject;
+
+        _tweens = DOTween.Sequence();
     }
     void OnEnable()
     {
@@ -66,7 +79,9 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        RotateCircle();
+        if(!_isHit)
+            RotateCircle();
+
         DebugDecision();
         CheckCircle();
     }
@@ -111,6 +126,10 @@ public class Enemy : MonoBehaviour
         renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 1);
         renderer2.color = new Color(renderer2.color.r, renderer2.color.g, renderer2.color.b, 1);
         renderer3.color = new Color(renderer3.color.r, renderer3.color.g, renderer3.color.b, 1);
+
+        _tweens.Kill();
+
+        _isHit = false; 
     }
 
     public void Hit()
@@ -128,8 +147,9 @@ public class Enemy : MonoBehaviour
         }
 
         StartCoroutine("OnHit");
-        // test
-        //transform.gameObject.SetActive(false);
+        ObjectPoolManager objPool = FindObjectOfType<ObjectPoolManager>();
+        GameObject hitEffect = objPool.GetHitEffect();
+        hitEffect.transform.position = transform.position;
     }
 
     void DebugDecision()
@@ -160,8 +180,12 @@ public class Enemy : MonoBehaviour
         SpriteRenderer renderer3 = _fan.GetComponent<SpriteRenderer>();  
 
         Color initialColor = renderer.color;
-        
-        float duration = 0.3f;
+
+        float curCircleScale = _decisionCircle.transform.localScale.x;
+
+        float duration = 0.15f;
+
+        _isHit = true;
         while (elapsedTime <= duration)
         {
             elapsedTime += Time.deltaTime;
@@ -172,12 +196,20 @@ public class Enemy : MonoBehaviour
             renderer2.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
             renderer3.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
 
+/*            float t = elapsedTime / duration;
+            float easedT = EaseOutExp(t);
+            float curScale = Mathf.Lerp(curCircleScale, _decCircleFirstScale, easedT);
 
-
+            _decisionCircle.transform.localScale = new Vector3(curScale, curScale, curScale);*/
 
             yield return null;
         }
+
     }
 
+    float EaseOutExp(float x)
+    {
+        return x == 1 ? 1 : 1 - Mathf.Pow(2, -10 * x);
+    }
 }
 

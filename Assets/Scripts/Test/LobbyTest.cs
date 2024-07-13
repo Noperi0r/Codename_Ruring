@@ -8,7 +8,7 @@ public class LobbyTest : MonoBehaviour
 {
     void Start()
     {
-        Invoke("StartGame", 5f);
+        Invoke("StartGame", 1f);
     }
     public void StartGame()
     {
