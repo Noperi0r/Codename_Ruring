@@ -21,22 +21,25 @@ public class GameManager : MonoSingleton<GameManager>
     public static AlertManager Alerting { get { return Instance.alert; } }
 
     public PatternReader _patternReader;
-    public LevelMode _levelMode;
+    public static LevelMode _levelMode;
 
     public static Action Success = null;
     public static Action Fail = null;
     public static Action GameClear = null;
     public static Action GameOver = null;
-
     public static Action<float> BgmVolume = null;
     public static Action<float> EffectVolume = null;
     
     public static Dictionary<LevelMode, List<MusicData>> MusicPattern { get; private set; }= new Dictionary<LevelMode, List<MusicData>>();
 
-    string _sceneShootingName = "Scene_Shooting";
+    string _mainSceneName = "Scene_Shooting";
 
     int _totalScore;
     int _successScore;
+
+    public static int _maxScore_Easy;
+    public static int _maxScore_Normal;
+    public static int _maxScore_Hard;
 
     public static int _playerLife = 3;
     public int _playerMaxLife = 3;
@@ -57,17 +60,17 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Update()
     {
-        // TEST: Scene load 
+        // TEST: Scene load
         if (Input.GetKeyDown(KeyCode.V))
         {
             print("Scene loaded from GameManager");
-            SceneManager.LoadScene(_sceneShootingName);
+            SceneManager.LoadScene(_mainSceneName);
         }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == _sceneShootingName)
+        if (scene.name == _mainSceneName)
         {
             Cursor.visible = false;
             _playerLife = _playerMaxLife;

@@ -15,6 +15,20 @@ public class GameEnd : MonoBehaviour
     void Start()
     {
         currentScoreText.text = MusicGame.Combo.ToString();
+
+        switch (GameManager._levelMode)
+        {
+            case LevelMode.Easy:
+                bestScoreText.text = GameManager._maxScore_Easy.ToString();
+                break;
+            case LevelMode.Normal:
+                bestScoreText.text = GameManager._maxScore_Normal.ToString();
+                break;
+            case LevelMode.Hard:
+                bestScoreText.text = GameManager._maxScore_Hard.ToString();
+                break;
+        }
+
         bestScoreText.text = MusicGame.MaxCombo.ToString();
         
         Sequence seq = DOTween.Sequence();

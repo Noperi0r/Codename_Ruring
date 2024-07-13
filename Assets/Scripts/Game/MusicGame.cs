@@ -13,13 +13,13 @@ namespace Game
         private Timer timer;
         private int musicIndex = 0;
 
-        private LevelMode _currentLevel;
         private float _decisionTime = 2.0f;
 
         public static int Combo = 0;
         public static int MaxCombo = 0;
         public void Awake()
         {
+            // TODO: read by difficulty GameManager._levelMode
             _musicPattern = GameManager.MusicPattern[LevelMode.Normal];
             timer = gameObject.GetComponent<Timer>();
             timer.RestartTimer();
@@ -74,7 +74,7 @@ namespace Game
 
         public void DecideDecisionTime()
         {
-            switch(_currentLevel) 
+            switch(GameManager._levelMode) 
             {
                 case LevelMode.Easy:
                     _decisionTime = 2.5f;

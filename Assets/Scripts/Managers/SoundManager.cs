@@ -14,7 +14,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private float _effectVolume = 0.6f;
     
-
     void Awake()
     {
         _soundEffects = Resources.LoadAll<AudioClip>(_effectPath);
