@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UI;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -41,7 +42,10 @@ namespace Game
         {
             if (musicIndex >= _musicPattern.Count)
             {
-                GameManager.GameClear.Invoke();
+                if (SoundManager.Instance.IsPlaying(ESoundType.Cheers)) return;
+                
+                SoundManager.Instance.PlaySound(ESoundType.Cheers);
+                StartCoroutine("CheckEnd");
                 return;
             }
 
@@ -88,6 +92,24 @@ namespace Game
 
             }
         }
+
+        IEnumerator CheckEnd()
+        {
+            yield return null;
+
+            while (true)
+            {
+                if (!SoundManager.Instance.IsPlaying(ESoundType.Cheers))
+                {
+                    break;
+                }
+
+                yield return null;
+            }
+            SoundManager.Instance.PlaySound(ESoundType.ScorePopup);
+            GameManager.GameClear?.Invoke();
+        }
+
     }
 
 }

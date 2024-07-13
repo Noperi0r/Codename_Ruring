@@ -56,6 +56,9 @@ public class GameManager : MonoSingleton<GameManager>
         //_soundManager = SoundManager.Instance;
 
         _successScore = 100;
+
+        GameClear -= ComputeBestScore;
+        GameClear += ComputeBestScore;
     }
 
     void Update()
@@ -118,6 +121,23 @@ public class GameManager : MonoSingleton<GameManager>
                 Fail?.Invoke();
                 break;
             default:
+                break;
+        }
+
+    }
+
+    void ComputeBestScore()
+    {
+        switch (_levelMode)
+        {
+            case LevelMode.Easy:
+                _maxScore_Easy = _totalScore > _maxScore_Easy ? _totalScore : _maxScore_Easy;
+                break;
+            case LevelMode.Normal:
+                _maxScore_Normal = _totalScore > _maxScore_Normal ? _totalScore : _maxScore_Normal;
+                break;
+            case LevelMode.Hard:
+                _maxScore_Hard = _totalScore > _maxScore_Hard ? _totalScore : _maxScore_Hard;
                 break;
         }
 

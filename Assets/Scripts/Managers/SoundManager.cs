@@ -28,12 +28,12 @@ public class SoundManager : MonoSingleton<SoundManager>
             source.volume = _effectVolume; 
             GameManager.EffectVolume += (volume) =>
             {
-                SetVolumn(source, volume);
+                SetVolume(source, volume);
             };
         }
     }
 
-    public void SetVolumn(AudioSource source, float volume)
+    public void SetVolume(AudioSource source, float volume)
     {
         source.volume = volume;
     }
@@ -43,10 +43,10 @@ public class SoundManager : MonoSingleton<SoundManager>
         _speakers[(int)sound].GetComponent<AudioSource>().Play();
     }
     
-    public void PlaySound(ESoundType sound, float volumn)
+    public void PlaySound(ESoundType sound, float volume)
     {
         AudioSource source = _speakers[(int)sound].GetComponent<AudioSource>();
-        source.volume = volumn;
+        source.volume = volume;
         source.Play();
     }
 
