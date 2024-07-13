@@ -29,7 +29,7 @@ public class MainGameUI : UIManager
 
     public void HeartBreak()
     {
-        hearts[heartCount].SetActive(false);
+        hearts[heartCount - 1].SetActive(false);
         heartCount--;
     }
 
