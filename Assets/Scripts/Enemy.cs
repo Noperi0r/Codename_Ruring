@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
     float _moveSpeed;
     Rigidbody2D _enemyRb;
 
+    bool _isHit;
+
     public float moveSpeed
     {
         get { return _moveSpeed; }
@@ -77,7 +79,9 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        RotateCircle();
+        if(!_isHit)
+            RotateCircle();
+
         DebugDecision();
         CheckCircle();
     }
@@ -124,6 +128,8 @@ public class Enemy : MonoBehaviour
         renderer3.color = new Color(renderer3.color.r, renderer3.color.g, renderer3.color.b, 1);
 
         _tweens.Kill();
+
+        _isHit = false; 
     }
 
     public void Hit()
@@ -178,6 +184,8 @@ public class Enemy : MonoBehaviour
         float curCircleScale = _decisionCircle.transform.localScale.x;
 
         float duration = 0.15f;
+
+        _isHit = true;
         while (elapsedTime <= duration)
         {
             elapsedTime += Time.deltaTime;
@@ -187,18 +195,21 @@ public class Enemy : MonoBehaviour
             renderer.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
             renderer2.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
             renderer3.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
-            /*
-                        float t = elapsedTime / duration;
-                        float easedT = EaseOutExpo(t);
-                        float curScale = Mathf.Lerp(curCircleScale, _decCircleFirstScale, easedT);
 
-                        _decisionCircle.transform.localScale = new Vector3(curScale, curScale, curScale);*/
+/*            float t = elapsedTime / duration;
+            float easedT = EaseOutExp(t);
+            float curScale = Mathf.Lerp(curCircleScale, _decCircleFirstScale, easedT);
 
-            float scale = _decisionCircle.transform.localScale.x;
-            _decisionCircle.transform.localScale = new Vector3(scale * 4f, scale * 4f, scale * 4f);
+            _decisionCircle.transform.localScale = new Vector3(curScale, curScale, curScale);*/
 
             yield return null;
         }
+
+    }
+
+    float EaseOutExp(float x)
+    {
+        return x == 1 ? 1 : 1 - Mathf.Pow(2, -10 * x);
     }
 }
 
