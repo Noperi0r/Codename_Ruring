@@ -12,7 +12,7 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private RectTransform rt;
     private Button btn;
     private Vector2 originalPosition;
-    private Vector2 addPosition = new Vector2(-150, 30);
+    private Vector2 addPosition = new Vector2(-90, 30);
 
     public void Awake()
     {
