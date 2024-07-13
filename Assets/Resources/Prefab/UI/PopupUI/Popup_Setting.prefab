@@ -880,9 +880,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7179910693875012021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a630432bac701a498acd1144fefc2bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d8976d283a3dd947a7fdb8c06809818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmSlider: {fileID: 30580024325763202}
+  effectSlider: {fileID: 1050484023572087648}
 --- !u!1 &7855707014625289899
 GameObject:
   m_ObjectHideFlags: 0

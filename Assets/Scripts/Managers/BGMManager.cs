@@ -55,7 +55,17 @@ public class BGMManager : MonoBehaviour
             source.clip = _soundEffects[i];
             source.loop = true;
             source.volume = _bgmVolume; 
+            GameManager.BgmVolume += (volume) =>
+            {
+                SetVolumn(source, volume);
+                Debug.Log($"{volume}으로바꿈...");
+            };
         }
+    }
+    
+    public void SetVolumn(AudioSource source, float volume)
+    {
+        source.volume = volume;
     }
 
     public void PlayBGM(EBGMType sound)

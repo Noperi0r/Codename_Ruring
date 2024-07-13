@@ -17,6 +17,7 @@ namespace Game
         private float _decisionTime = 2.0f;
 
         public static int Combo = 0;
+        public static int MaxCombo = 0;
         public void Awake()
         {
             _musicPattern = GameManager.MusicPattern[LevelMode.Normal];
@@ -25,6 +26,7 @@ namespace Game
 
             GameManager._playerLife = 3;
             Combo = 0;
+            MaxCombo = 0;
             
             GameManager.Success -= ComboUp;
             GameManager.Success += ComboUp;
@@ -37,7 +39,11 @@ namespace Game
     
         void FixedUpdate()
         {
-            if (musicIndex >= _musicPattern.Count) return;
+            if (musicIndex >= _musicPattern.Count)
+            {
+                GameManager.GameClear.Invoke();
+                return;
+            }
 
             Debug.Log($"{_musicPattern[musicIndex].time}, {timer.currentTime}");
 
@@ -61,6 +67,8 @@ namespace Game
 
         public void ComboFail()
         {
+            if (Combo > MaxCombo)
+                MaxCombo = Combo;
             Combo = 0;
         }
 

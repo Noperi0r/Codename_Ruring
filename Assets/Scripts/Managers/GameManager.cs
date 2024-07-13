@@ -27,6 +27,9 @@ public class GameManager : MonoSingleton<GameManager>
     public static Action Fail = null;
     public static Action GameClear = null;
     public static Action GameOver = null;
+
+    public static Action<float> BgmVolume = null;
+    public static Action<float> EffectVolume = null;
     
     public static Dictionary<LevelMode, List<MusicData>> MusicPattern { get; private set; }= new Dictionary<LevelMode, List<MusicData>>();
 
@@ -86,8 +89,7 @@ public class GameManager : MonoSingleton<GameManager>
             _poolManager = null;
             
         }
-            
-
+        
         if(scene.name == "Lobby")
         {
             _patternReader = FindObjectOfType<PatternReader>(); 
@@ -102,16 +104,16 @@ public class GameManager : MonoSingleton<GameManager>
                 if (--_playerLife <= 0)
                 {
                     print("GAME OVER");
-                    GameOver.Invoke();
+                    GameOver?.Invoke();
                 }
                 print("FAIL SCORE ADDED");
-                Success.Invoke();
+                Success?.Invoke();
                 break;
 
             case EHitState.Success:
                 _totalScore += _successScore;
                 print("SUCCESS SCORE ADDED");
-                Fail.Invoke();
+                Fail?.Invoke();
                 break;
             default:
                 break;
