@@ -9,7 +9,7 @@ public class SettingUI : MonoBehaviour
     public Slider effectSlider;
     void Start()
     {
-        bgmSlider.onValueChanged.AddListener(delegate{GameManager.BgmVolume.Invoke(bgmSlider.value);});
-        effectSlider.onValueChanged.AddListener(delegate{GameManager.EffectVolume.Invoke(bgmSlider.value);});
+        bgmSlider.onValueChanged.AddListener(delegate{GameManager.BgmVolume?.Invoke(bgmSlider.value);});
+        effectSlider.onValueChanged.AddListener(delegate{GameManager.EffectVolume?.Invoke(effectSlider.value);});
     }
 }

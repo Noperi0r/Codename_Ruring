@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MIC
       objectReference: {fileID: 0}
+    - target: {fileID: 5396680373970906902, guid: a27c82d21c550dd4197a32015954bcf3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6186962368491698143, guid: a27c82d21c550dd4197a32015954bcf3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -824,7 +828,7 @@ SceneRoots:
   - {fileID: 1256367488}
   - {fileID: 539460648}
   - {fileID: 8956888283439343913}
-  - {fileID: 1852350260}
   - {fileID: 6046463199434169231}
   - {fileID: 1636308938}
   - {fileID: 932862730}
+  - {fileID: 1852350260}
