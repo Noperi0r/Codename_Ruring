@@ -40,6 +40,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public void PlaySound(ESoundType sound)
     {
+        Debug.Log("Playsound ok");
         _speakers[(int)sound].GetComponent<AudioSource>().Play();
     }
     

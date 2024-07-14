@@ -39,7 +39,6 @@ public class ObjectPoolManager : MonoBehaviour
         for(int i=0; i<_enemyObjs.Length; i++) 
         {
             int flag = Random.Range(0, 2);
-            Debug.Log(flag);
             if(flag == 0)
                 _enemyObjs[i] = Instantiate(_enemyManPrefab);
             else
