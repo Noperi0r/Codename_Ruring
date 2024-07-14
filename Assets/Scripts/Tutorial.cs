@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
-
     [SerializeField] GameObject _tutorialPicParent;
     int _totalPageNum;
     int _curPageNum;
+
+    [SerializeField] Canvas _canvas;
+    bool pass = false;
 
     void Start()
     {
@@ -26,7 +30,9 @@ public class Tutorial : MonoBehaviour
             if(_curPageNum >= _totalPageNum) 
             {
                 Debug.Log("tutorial enD");
-                // TODO: 튜토리얼 종료 이벤트
+                _canvas.gameObject.SetActive(true);
+                transform.gameObject.SetActive(false);
+                SceneManager.LoadScene("MainGame");
             }
         }
     }
