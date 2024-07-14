@@ -34,11 +34,11 @@ public class MainGameUI : UIManager
 
     public void InitGO(Scene scene, LoadSceneMode mode)
     {
-        hearts[0] = transform.GetChild(4).gameObject;
-        hearts[1] = transform.GetChild(3).gameObject;
-        hearts[2] = transform.GetChild(2).gameObject;
-        failPopup = transform.GetChild(8).gameObject;
-        clearPopup = transform.GetChild(9).gameObject;
+        hearts[0] = transform.GetChild(7).gameObject;
+        hearts[1] = transform.GetChild(6).gameObject;
+        hearts[2] = transform.GetChild(5).gameObject;
+        failPopup = transform.GetChild(11).gameObject;
+        clearPopup = transform.GetChild(12).gameObject;
     }
 
     void Update()

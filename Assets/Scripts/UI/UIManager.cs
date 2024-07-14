@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     public void DeleteUI(GameObject obj)
     {
-        if (SceneManager.GetActiveScene().name == GameManager._mainSceneName)
+        if (SceneManager.GetActiveScene().name == "MainGame")
             Cursor.visible = false;
 
         SoundManager.Instance.PlaySound(ESoundType.ClickButton);
