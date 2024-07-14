@@ -28,10 +28,10 @@ public class GameManager : MonoSingleton<GameManager>
     
     public static Dictionary<LevelMode, List<MusicData>> MusicPattern { get; private set; }= new Dictionary<LevelMode, List<MusicData>>();
 
-    string _introSceneName = "IntroScene";
-    string _startSceneName = "StartScene";
-    string _lobbySceneName = "LobbyScene";
-    string _mainSceneName = "MainGame";
+    public static string _introSceneName = "IntroScene";
+    public static string _startSceneName = "StartScene";
+    public static string _lobbySceneName = "LobbyScene";
+    public static string _mainSceneName = "MainGame";
 
     int _totalScore;
     int _successScore;
@@ -46,6 +46,9 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         base.Awake();
+
+        if (!BGMManager.Instance.IsPlaying(EBGMType.BGM))
+            BGMManager.Instance.PlayBGM(EBGMType.BGM);
     }
 
     void Start()
@@ -93,6 +96,8 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
+            BGMManager.Instance.StopBGM(EBGMType.StarBubble);
+
             if (!BGMManager.Instance.IsPlaying(EBGMType.BGM))
                 BGMManager.Instance.PlayBGM(EBGMType.BGM);
 
@@ -103,11 +108,6 @@ public class GameManager : MonoSingleton<GameManager>
         if(scene.name == _lobbySceneName)
         {
             _patternReader = FindObjectOfType<PatternReader>(); 
-        }
-        
-        if(scene.name == _startSceneName)
-        {
-            print("OK");
         }
     }
 
