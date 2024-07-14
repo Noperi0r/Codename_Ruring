@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Tutorial : MonoBehaviour
     int _curPageNum;
 
     [SerializeField] Canvas _canvas;
+    bool pass = false;
 
     void Start()
     {
@@ -29,8 +31,8 @@ public class Tutorial : MonoBehaviour
             {
                 Debug.Log("tutorial enD");
                 _canvas.gameObject.SetActive(true);
-
                 transform.gameObject.SetActive(false);
+                SceneManager.LoadScene("MainGame");
             }
         }
     }
