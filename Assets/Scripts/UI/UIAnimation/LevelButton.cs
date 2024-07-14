@@ -21,8 +21,10 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         originalPosition = rt.anchoredPosition;
         btn.onClick.AddListener(delegate
         {
+            SoundManager.Instance.PlaySound(ESoundType.ClickButton);
+            StartCoroutine("LoadAfterClick");
             GameManager._levelMode = level;
-            SceneManager.LoadScene("Scenes/Game/MainGame");
+            //SceneManager.LoadScene("Scenes/Game/MainGame");
         });
     }
 
@@ -34,6 +36,18 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerExit(PointerEventData eventData)
     {
         rt.DOAnchorPos(originalPosition, 0f);
+    }
 
+    IEnumerator LoadAfterClick()
+    {
+        yield return null;
+        
+        while(true)
+        {
+            if (!SoundManager.Instance.IsPlaying(ESoundType.ClickButton))
+                break;
+            yield return null;
+        }
+        SceneManager.LoadScene("Scenes/Game/MainGame");
     }
 }

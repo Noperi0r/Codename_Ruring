@@ -43,19 +43,23 @@ public class MainGameUI : UIManager
     {
         if (heartCount > 0)
         {
-            hearts[heartCount - 1].SetActive(false);
-            heartCount--;
+        SoundManager.Instance.PlaySound(ESoundType.HeartBreak);
+        hearts[heartCount - 1].SetActive(false);
+        heartCount--;
         }
     }
 
     public void GameOverPopup()
     {
+        BGMManager.Instance.StopBGM(EBGMType.BGM);
+        SoundManager.Instance.PlaySound(ESoundType.LoseEffect);
+
         failPopup.SetActive(true);
-        Cursor.visible = true;
     }
     
     public void GameClearPopup()
     {
+        SoundManager.Instance.PlaySound(ESoundType.WinEffect);
         clearPopup.SetActive(true);
         Cursor.visible = true;
     }

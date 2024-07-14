@@ -28,6 +28,9 @@ public class GameManager : MonoSingleton<GameManager>
     
     public static Dictionary<LevelMode, List<MusicData>> MusicPattern { get; private set; }= new Dictionary<LevelMode, List<MusicData>>();
 
+    string _introSceneName = "IntroScene";
+    string _startSceneName = "StartScene";
+    string _lobbySceneName = "LobbyScene";
     string _mainSceneName = "MainGame";
 
     int _totalScore;
@@ -59,17 +62,21 @@ public class GameManager : MonoSingleton<GameManager>
     void Update()
     {
         // TEST: Scene load
-        if (Input.GetKeyDown(KeyCode.V))
+/*        if (Input.GetKeyDown(KeyCode.V))
         {
-            print("Scene loaded from GameManager");
-            SceneManager.LoadScene(_mainSceneName);
-        }
+            SoundManager.Instance.PlaySound(ESoundType.ClickButton);
+*//*            print("Scene loaded from GameManager");
+            SceneManager.LoadScene(_mainSceneName);*//*
+        }*/
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == _mainSceneName)
         {
+            BGMManager.Instance.StopBGM(EBGMType.BGM);
+            BGMManager.Instance.PlayBGM(EBGMType.StarBubble);
+
             Cursor.visible = false;
             _playerLife = _playerMaxLife;
 
@@ -86,13 +93,21 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
+            if (!BGMManager.Instance.IsPlaying(EBGMType.BGM))
+                BGMManager.Instance.PlayBGM(EBGMType.BGM);
+
             Cursor.visible = true;
             _poolManager = null;
         }
 
-        if(scene.name == "Lobby")
+        if(scene.name == _lobbySceneName)
         {
             _patternReader = FindObjectOfType<PatternReader>(); 
+        }
+        
+        if(scene.name == _startSceneName)
+        {
+            print("OK");
         }
     }
 

@@ -21,6 +21,7 @@ public class Tutorial : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)) 
         {
+            SoundManager.Instance.PlaySound(ESoundType.ClickButton);
             _tutorialPicParent.transform.GetChild(_curPageNum++)?.gameObject.SetActive(false);
             if(_curPageNum >= _totalPageNum) 
             {
