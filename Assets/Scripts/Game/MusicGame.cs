@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
-using UI;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -21,7 +20,7 @@ namespace Game
         public void Awake()
         {
             // TODO: read by difficulty GameManager._levelMode
-            _musicPattern = GameManager.MusicPattern[LevelMode.Normal];
+            _musicPattern = GameManager.MusicPattern[GameManager._levelMode];
             timer = gameObject.GetComponent<Timer>();
             timer.RestartTimer();
 
@@ -53,7 +52,7 @@ namespace Game
 
             if (_musicPattern[musicIndex].time - _decisionTime <= timer.currentTime)
             {
-                GameManager.Alerting.Alert(musicIndex.ToString(), AlertMode.Pop, 0.5f);
+                //GameManager.Alerting.Alert(musicIndex.ToString(), AlertMode.Pop, 0.5f);
 
                 int spawnPoint = _musicPattern[musicIndex].spawnPoint;
 

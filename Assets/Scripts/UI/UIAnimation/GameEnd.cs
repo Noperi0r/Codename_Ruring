@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Game;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameEnd : MonoBehaviour
 {
@@ -35,5 +36,15 @@ public class GameEnd : MonoBehaviour
         seq.Append(currentScore.DOAnchorPos(new Vector2(0f, 0f), 0.5f).SetEase(Ease.OutExpo).SetDelay(2f));
         seq.Append(bestScore.DOAnchorPos(new Vector2(0f, 0f), 0.5f).SetEase(Ease.OutExpo));
         seq.Play();
+    }
+
+    public void MoveToLobby()
+    {
+        SceneManager.LoadScene("LobbyScene");
+    }
+
+    public void OneMoreTime()
+    {
+        SceneManager.LoadScene("MainGame");
     }
 }

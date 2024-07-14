@@ -190,6 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScore: {fileID: 998041948771933124}
   bestScore: {fileID: 5677681884145448080}
+  currentScoreText: {fileID: 5899418123671300242}
+  bestScoreText: {fileID: 4084441015460607646}
 --- !u!1 &2826659247046216742
 GameObject:
   m_ObjectHideFlags: 0

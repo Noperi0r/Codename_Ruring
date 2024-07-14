@@ -490,9 +490,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2270990167657538588, guid: c0d0dd7d11e33114e8d7a8b6d5990d0f, type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4567052252116306783, guid: c0d0dd7d11e33114e8d7a8b6d5990d0f, type: 3}
       propertyPath: m_Name
       value: Canvas_LobbyScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585250992849669244, guid: c0d0dd7d11e33114e8d7a8b6d5990d0f, type: 3}
+      propertyPath: level
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5046481482233369029, guid: c0d0dd7d11e33114e8d7a8b6d5990d0f, type: 3}
       propertyPath: m_Pivot.x

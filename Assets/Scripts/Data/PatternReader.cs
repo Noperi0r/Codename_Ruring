@@ -22,7 +22,7 @@ public class PatternReader : MonoBehaviour
         // 데이터 요청을 위한 설정 - Read 딜레이가 긺(아마 비동기 처리). 무조건 로비에서 로드해야 접근 시 오류 생기지 않을 듯.
         SpreadsheetManager.Read(new GSTU_Search(sheetID, LevelMode.Easy.ToString()), Read_Easy);
         SpreadsheetManager.Read(new GSTU_Search(sheetID, LevelMode.Normal.ToString()), Read_Normal);
-        //SpreadsheetManager.Read(new GSTU_Search(sheetID, LevelMode.Hard.ToString()), Read_Hard);
+        SpreadsheetManager.Read(new GSTU_Search(sheetID, LevelMode.Hard.ToString()), Read_Hard);
     }
     
     void Read_Easy(GstuSpreadSheet spreadSheet)

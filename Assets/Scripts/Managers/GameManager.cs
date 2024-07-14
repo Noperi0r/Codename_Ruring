@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using UI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,9 +16,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     SoundManager _soundManager;
     
-    private AlertManager alert;
-    public static AlertManager Alerting { get { return Instance.alert; } }
-
     public PatternReader _patternReader;
     public static LevelMode _levelMode;
 
@@ -47,7 +43,6 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         base.Awake();
-        alert = new AlertManager();
     }
 
     void Start()
@@ -108,16 +103,16 @@ public class GameManager : MonoSingleton<GameManager>
             case EHitState.Fail:
                 if (--_playerLife <= 0)
                 {
-                    print("GAME OVER");
+                    //print("GAME OVER");
                     GameOver?.Invoke();
                 }
-                print("FAIL SCORE ADDED");
+                //print("FAIL SCORE ADDED");
                 Success?.Invoke();
                 break;
 
             case EHitState.Success:
                 _totalScore += _successScore;
-                print("SUCCESS SCORE ADDED");
+                //print("SUCCESS SCORE ADDED");
                 Fail?.Invoke();
                 break;
             default:

@@ -147,7 +147,7 @@ public class Enemy : MonoBehaviour
         else
         {
             OnDecided?.Invoke(EHitState.Fail);
-            fan.GetComponent<Animator>().SetTrigger("hitFail");
+            fan?.GetComponent<Animator>().SetTrigger("hitFail");
         }
 
         StartCoroutine("OnHit");
