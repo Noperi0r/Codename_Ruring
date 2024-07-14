@@ -23,7 +23,8 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             _speakers[i] = Instantiate(Resources.Load<GameObject>(_prefabPath), transform);
             _speakers[i].GetComponent<AudioSource>().clip = _soundEffects[i];
-                        
+            _speakers[i].GetComponent<AudioSource>().loop = false;
+
             AudioSource source = _speakers[i].GetComponent<AudioSource>();
             source.volume = _effectVolume; 
             GameManager.EffectVolume += (volume) =>

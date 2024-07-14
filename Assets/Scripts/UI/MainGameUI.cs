@@ -57,10 +57,11 @@ public class MainGameUI : UIManager
 
     public void GameOverPopup()
     {
-        BGMManager.Instance.StopBGM(EBGMType.BGM);
+        //BGMManager.Instance.StopBGM(EBGMType.StarBubble);
         SoundManager.Instance.PlaySound(ESoundType.LoseEffect);
-
+        
         failPopup.SetActive(true);
+        Cursor.visible = true;
     }
     
     public void GameClearPopup()

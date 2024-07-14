@@ -118,24 +118,21 @@ public class GameManager : MonoSingleton<GameManager>
             case EHitState.Fail:
                 if (--_playerLife <= 0)
                 {
-                    //print("GAME OVER");
+
                     GameOver?.Invoke();
                 }
-                //print("FAIL SCORE ADDED");
                 Fail?.Invoke();
 
                 break;
 
             case EHitState.Success:
                 _totalScore += _successScore;
-                //print("SUCCESS SCORE ADDED");
                 Success?.Invoke();
 
                 break;
             default:
                 break;
         }
-
     }
 
     void ComputeBestScore()
