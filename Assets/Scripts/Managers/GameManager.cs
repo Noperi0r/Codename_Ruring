@@ -122,13 +122,15 @@ public class GameManager : MonoSingleton<GameManager>
                     GameOver?.Invoke();
                 }
                 //print("FAIL SCORE ADDED");
-                Success?.Invoke();
+                Fail?.Invoke();
+
                 break;
 
             case EHitState.Success:
                 _totalScore += _successScore;
                 //print("SUCCESS SCORE ADDED");
-                Fail?.Invoke();
+                Success?.Invoke();
+
                 break;
             default:
                 break;

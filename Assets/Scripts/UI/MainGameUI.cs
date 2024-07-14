@@ -4,26 +4,19 @@ using System.Text;
 using Game;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainGameUI : UIManager
 {
     public TextMeshProUGUI ComboText;
-    public GameObject[] hearts = new GameObject[3];
+    [SerializeField] public GameObject[] hearts = new GameObject[3];
     public int heartCount = 3;
-    public GameObject failPopup;
-    public GameObject clearPopup;
+    [SerializeField] public GameObject failPopup;
+    [SerializeField] public GameObject clearPopup;
 
-    void Start()
-    {
-        hearts[0] = transform.Find("Heart3").gameObject;
-        hearts[1] = transform.Find("Heart2").gameObject;
-        hearts[2] = transform.Find("Heart1").gameObject;
-        failPopup = transform.Find("GameOver").gameObject;
-        clearPopup = transform.Find("GameClear").gameObject;
-        Debug.Log(clearPopup);
-    }
     void OnEnable()
     {
+        SceneManager.sceneLoaded += InitGO;
         GameManager.Fail -= HeartBreak;
         GameManager.Fail += HeartBreak;
         GameManager.GameOver -= GameOverPopup;
@@ -31,7 +24,20 @@ public class MainGameUI : UIManager
         GameManager.GameClear -= GameClearPopup;
         GameManager.GameClear += GameClearPopup;
         heartCount = GameManager._playerLife;
-        
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= InitGO;
+    }
+
+    public void InitGO(Scene scene, LoadSceneMode mode)
+    {
+        hearts[0] = transform.GetChild(4).gameObject;
+        hearts[1] = transform.GetChild(3).gameObject;
+        hearts[2] = transform.GetChild(2).gameObject;
+        failPopup = transform.GetChild(8).gameObject;
+        clearPopup = transform.GetChild(9).gameObject;
     }
 
     void Update()
@@ -43,9 +49,9 @@ public class MainGameUI : UIManager
     {
         if (heartCount > 0)
         {
-        SoundManager.Instance.PlaySound(ESoundType.HeartBreak);
-        hearts[heartCount - 1].SetActive(false);
-        heartCount--;
+            SoundManager.Instance.PlaySound(ESoundType.HeartBreak);
+            hearts[heartCount - 1].SetActive(false);
+            heartCount--;
         }
     }
 
