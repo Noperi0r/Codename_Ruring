@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
         set { _decisionTime = value; }
     }
     
-    [SerializeField] float _decisionThreshold = 0.1f;
+    [SerializeField] float _decisionThreshold = 0.3f;
     [SerializeField] float _rotateSpeed = 120.0f;
 
     GameObject _decisionCircle;

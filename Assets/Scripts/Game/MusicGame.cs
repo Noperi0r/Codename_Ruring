@@ -95,7 +95,7 @@ namespace Game
         IEnumerator CheckEnd()
         {
             yield return null;
-
+            musicIndex = 0;
             while (true)
             {
                 if (!SoundManager.Instance.IsPlaying(ESoundType.Cheers))

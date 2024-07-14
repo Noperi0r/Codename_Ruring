@@ -28,10 +28,10 @@ public class GameManager : MonoSingleton<GameManager>
     
     public static Dictionary<LevelMode, List<MusicData>> MusicPattern { get; private set; }= new Dictionary<LevelMode, List<MusicData>>();
 
-    string _introSceneName = "IntroScene";
-    string _startSceneName = "StartScene";
-    string _lobbySceneName = "LobbyScene";
-    string _mainSceneName = "MainGame";
+    public static string _introSceneName = "IntroScene";
+    public static string _startSceneName = "StartScene";
+    public static string _lobbySceneName = "LobbyScene";
+    public static string _mainSceneName = "MainGame";
 
     int _totalScore;
     int _successScore;
