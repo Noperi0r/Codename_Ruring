@@ -13,6 +13,7 @@ public class MainGameUI : UIManager
     public int heartCount = 3;
     [SerializeField] public GameObject failPopup;
     [SerializeField] public GameObject clearPopup;
+    
 
     void OnEnable()
     {
@@ -60,7 +61,7 @@ public class MainGameUI : UIManager
         //BGMManager.Instance.StopBGM(EBGMType.StarBubble);
         SoundManager.Instance.PlaySound(ESoundType.LoseEffect);
         
-        failPopup.SetActive(true);
+            failPopup.SetActive(true);
         Cursor.visible = true;
     }
     

@@ -938,6 +938,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 682521104652053655, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -626
+      objectReference: {fileID: 0}
+    - target: {fileID: 682521104652053655, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -287
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010618998837686387, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917498673905778739, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_Name
+      value: FaceNormal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917498673905778739, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162737737914404717, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6577834596513101860, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1022,6 +1046,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_MainGame
       objectReference: {fileID: 0}
+    - target: {fileID: 7539186781693795875, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694209574681218023, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209752892079306492, guid: 32570d2f5bcf13843b836ee4a12f0089, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d4a9dc97ea636ef438c4928dea280a21, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
