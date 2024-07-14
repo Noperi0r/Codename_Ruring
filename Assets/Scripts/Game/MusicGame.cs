@@ -19,26 +19,31 @@ namespace Game
         public static int MaxCombo = 0;
         public void Awake()
         {
-            // TODO: read by difficulty GameManager._levelMode
-            _musicPattern = GameManager.MusicPattern[GameManager._levelMode];
             timer = gameObject.GetComponent<Timer>();
-            timer.RestartTimer();
-
-            GameManager._playerLife = 3;
-            Combo = 0;
-            MaxCombo = 0;
             
             GameManager.Success -= ComboUp;
             GameManager.Success += ComboUp;
             GameManager.Fail -= ComboFail;
             GameManager.Fail += ComboFail;
+        }
+
+        public void OnEnable()
+        {
+            _musicPattern = GameManager.MusicPattern[GameManager._levelMode];
+
+            timer.RestartTimer();
             
-            Debug.Log(_musicPattern.Count);
+            GameManager._playerLife = 3;
+            Combo = 0;
+            MaxCombo = 0;
+            musicIndex = 0;
+            
             BGMManager.Instance.PlayBGM(EBGMType.StarBubble);
         }
     
         void FixedUpdate()
         {
+            GameManager._playerLife = 3;
             if (musicIndex >= _musicPattern.Count)
             {
                 if (SoundManager.Instance.IsPlaying(ESoundType.Cheers)) return;
@@ -48,12 +53,8 @@ namespace Game
                 return;
             }
 
-            //Debug.Log($"{_musicPattern[musicIndex].time}, {timer.currentTime}");
-
             if (_musicPattern[musicIndex].time - _decisionTime <= timer.currentTime)
             {
-                //GameManager.Alerting.Alert(musicIndex.ToString(), AlertMode.Pop, 0.5f);
-
                 int spawnPoint = _musicPattern[musicIndex].spawnPoint;
 
                 GameObject spawner = GameManager.PoolManager.GetSpawner(spawnPoint);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Game;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,26 +14,29 @@ public class MainGameUI : UIManager
     public int heartCount = 3;
     [SerializeField] public GameObject failPopup;
     [SerializeField] public GameObject clearPopup;
-    
 
     void OnEnable()
     {
-        SceneManager.sceneLoaded += InitGO;
+        GameManager._playerLife = 3;
+
+        heartCount = 3;
+        hearts[0].SetActive(true);
+        hearts[1].SetActive(true);
+        hearts[2].SetActive(true);
+        failPopup.SetActive(false);
+        clearPopup.SetActive(false);
+        
         GameManager.Fail -= HeartBreak;
         GameManager.Fail += HeartBreak;
         GameManager.GameOver -= GameOverPopup;
         GameManager.GameOver += GameOverPopup;
         GameManager.GameClear -= GameClearPopup;
         GameManager.GameClear += GameClearPopup;
+        InitGO();
         heartCount = GameManager._playerLife;
     }
 
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= InitGO;
-    }
-
-    public void InitGO(Scene scene, LoadSceneMode mode)
+    public void InitGO()
     {
         hearts[0] = transform.GetChild(7).gameObject;
         hearts[1] = transform.GetChild(6).gameObject;

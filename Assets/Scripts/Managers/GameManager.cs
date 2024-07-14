@@ -53,9 +53,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        //_soundManager = SoundManager.Instance;
-
         _successScore = 100;
 
         GameClear -= ComputeBestScore;
@@ -73,42 +70,35 @@ public class GameManager : MonoSingleton<GameManager>
         }*/
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void OnMainLoad()
     {
-        if (scene.name == _mainSceneName)
+        BGMManager.Instance.StopBGM(EBGMType.BGM);
+        BGMManager.Instance.PlayBGM(EBGMType.StarBubble);
+
+        Cursor.visible = false;
+        _playerLife = _playerMaxLife;
+
+        _poolManager = FindObjectOfType<ObjectPoolManager>();
+
+        if (_poolManager)
         {
-            BGMManager.Instance.StopBGM(EBGMType.BGM);
-            BGMManager.Instance.PlayBGM(EBGMType.StarBubble);
-
-            Cursor.visible = false;
-            _playerLife = _playerMaxLife;
-
-            _poolManager = FindObjectOfType<ObjectPoolManager>();
-
-            if (_poolManager)
+            for(int i=0; i<_poolManager._enemies.Length; ++i)
             {
-                for(int i=0; i<_poolManager._enemies.Length; ++i)
-                {
-                    _poolManager._enemies[i].OnDecided.AddListener(HandleScore);
-                }
-                _poolManager.PoolsOff();
+                _poolManager._enemies[i].OnDecided.AddListener(HandleScore);
             }
+            _poolManager.PoolsOff();
         }
-        else
-        {
-            BGMManager.Instance.StopBGM(EBGMType.StarBubble);
+    }
 
-            if (!BGMManager.Instance.IsPlaying(EBGMType.BGM))
-                BGMManager.Instance.PlayBGM(EBGMType.BGM);
+    public void OnLobbyLoad()
+    {
+        BGMManager.Instance.StopBGM(EBGMType.StarBubble);
 
-            Cursor.visible = true;
-            _poolManager = null;
-        }
+        if (!BGMManager.Instance.IsPlaying(EBGMType.BGM))
+            BGMManager.Instance.PlayBGM(EBGMType.BGM);
 
-        if(scene.name == _lobbySceneName)
-        {
-            _patternReader = FindObjectOfType<PatternReader>(); 
-        }
+        Cursor.visible = true;
+        _poolManager = null;
     }
 
     void HandleScore(EHitState hitState)

@@ -48,6 +48,7 @@ public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 break;
             yield return null;
         }
-        SceneManager.LoadScene("Scenes/Game/MainGame");
+        //SceneManager.LoadScene("Scenes/Game/MainGame");
+        CustomSceneManager.Instance.MoveSceneToMain();
     }
 }

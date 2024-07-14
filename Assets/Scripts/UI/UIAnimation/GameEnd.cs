@@ -40,11 +40,12 @@ public class GameEnd : MonoBehaviour
 
     public void MoveToLobby()
     {
-        SceneManager.LoadScene("LobbyScene");
+        CustomSceneManager.Instance.MoveSceneToLobby();
     }
 
     public void OneMoreTime()
     {
-        SceneManager.LoadScene("MainGame");
+        CustomSceneManager.Instance.MoveSceneToLobby();
+        CustomSceneManager.Instance.MoveSceneToMain();
     }
 }
